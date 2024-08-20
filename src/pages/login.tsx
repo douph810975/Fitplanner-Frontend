@@ -10,10 +10,10 @@ const LoginPage: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await login( {
+            const response = await login(
                 username,
                 password,
-            });
+            );
         } catch (error) {
             //alert('Invalid username or password');
         }

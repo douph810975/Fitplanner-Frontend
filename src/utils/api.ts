@@ -9,15 +9,18 @@ const apiClient = axios.create({
 
 export default apiClient;
 const domain = 'http://localhost:8080'
-export const login = (credential: any) => {
+export const login = (username:String,password:String) => {
     // login, input json with credentials, output auth token
-    const url = `${domain}/api/users/login`;
+    //const url = `${domain}/api/users/login`;
+    const url = new URL(`${domain}/api/users/login`);
+    url.searchParams.append("username", username.toString());
+    url.searchParams.append("password", password.toString());
     return fetch(url, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credential),
+        // headers: {
+        //     "Content-Type": "application/json",
+        // },
+        //body: JSON.stringify(credential),
     })
         .then((response) => {
             handleResponseStatus(response, "Fail to Log in");
